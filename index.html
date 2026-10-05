@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Edupreneur - Belajar bisnis dari nol</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f3f6f1; --ink: #14213d; --teal: #1f8a7d; --sun: #ffc857; --line: #d5dccf; --card: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Bricolage Grotesque', system-ui, sans-serif; line-height: 1.55; }
+    header { max-width: 960px; margin: 0 auto; padding: 20px 20px 0; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-weight: 800; font-size: 1.3rem; }
+    .logo span { background: var(--sun); padding: 0 6px; border-radius: 4px; }
+    .hero { max-width: 960px; margin: 0 auto; padding: 56px 20px 40px; }
+    .hero h1 { font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1.05; margin: 0 0 16px; font-weight: 800; max-width: 14ch; }
+    .hero p { font-size: 1.15rem; max-width: 52ch; margin: 0 0 24px; }
+    .btn { display: inline-block; background: var(--ink); color: #fff; padding: 12px 22px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+    .btn:hover { background: var(--teal); }
+    .btn:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+    main { max-width: 960px; margin: 0 auto; padding: 0 20px 64px; }
+    h2 { font-size: 1.6rem; margin: 24px 0 16px; }
+    #daftar-kursus { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .kartu { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .kartu h3 { margin: 0; font-size: 1.15rem; }
+    .kartu p { margin: 0; flex: 1; color: #3d4a63; }
+    .harga { font-weight: 800; color: var(--teal); font-size: 1.1rem; }
+    .info { padding: 20px; border: 1px dashed var(--line); border-radius: 12px; grid-column: 1 / -1; }
+    .error { border-color: #c0392b; color: #c0392b; }
+    footer { text-align: center; padding: 24px; color: #5b6b82; border-top: 1px solid var(--line); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Edu<span>preneur</span></div>
+  </header>
+
+  <section class="hero">
+    <h1>Belajar bisnis, mulai dari nol.</h1>
+    <p>Kursus singkat untuk pelajar dan pemula yang ingin membangun usaha pertamanya.</p>
+    <a class="btn" href="#kursus">Lihat kursus</a>
+  </section>
+
+  <main id="kursus">
+    <h2>Kursus tersedia</h2>
+    <div id="daftar-kursus"><div class="info">Memuat kursus...</div></div>
+  </main>
+
+  <footer>&copy; 2026 Edupreneur</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>
