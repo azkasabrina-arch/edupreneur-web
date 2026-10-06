@@ -21,8 +21,7 @@ db.auth.onAuthStateChange((_e, s) => { user = s?.user ?? null; render() })
 async function render() {
   if (!user) return tampilAuth()
   const { data } = await db.from('anggota_kelas').select('kelas(nama)').eq('user_id', user.id).limit(1)
-  if (!data || !data.length) return tampilKode()
-  tampilUtama(data[0].kelas.nama)
+  tampilUtama(data && data.length ? data[0].kelas.nama : '')
 }
 
 /* ---------- Daftar / Masuk ---------- */
