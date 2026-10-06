@@ -83,7 +83,7 @@ function tampilUtama(namaKelas) {
     <button id="tema" aria-label="Ganti tema">🌓</button></nav></div><div id="isi"></div>`
   app.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => { tab = b.dataset.tab; tampilUtama(namaKelas) })
   $('tema').onclick = gantiTema
-  ;({ beranda: beranda, dashboard: segera, hasil: segera, profil: profil })[tab](namaKelas)
+  ;({ beranda: beranda, dashboard: dashboard, hasil: pencapaian, profil: profil })[tab](namaKelas)
 }
 
 async function beranda(namaKelas) {
