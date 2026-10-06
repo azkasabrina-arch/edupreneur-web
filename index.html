@@ -36,10 +36,12 @@
     .prog span { display:block; height:100%; width:0%; background:var(--p2) }
     .kecil { color:var(--muted); font-size:.9rem }
     .row { display:flex; justify-content:space-between; gap:12px; padding:10px 0; border-bottom:1px solid var(--line) }
-  .box { margin-top:14px } .box ul { padding-left:20px }
+    .box { margin-top:14px } .box ul { padding-left:20px }
     .opsi { display:block; width:100%; text-align:left; font:inherit; font-weight:600; margin:8px 0; padding:12px; border-radius:12px; border:2px solid var(--line); background:var(--bg); color:var(--ink); cursor:pointer }
     .opsi:hover:not(:disabled) { border-color:var(--p) } .opsi.benar { border-color:var(--ok); background:#16a36a22 } .opsi.salah { border-color:var(--err); background:#d93a4a22 }
     input[type=range] { padding:0 }
+    textarea, select { width:100%; font:inherit; padding:11px 12px; border-radius:10px; border:2px solid var(--line); background:var(--bg); color:var(--ink) }
+    .pil { display:flex; gap:8px; align-items:center; font-weight:600; margin:6px 0 } .kunci { opacity:.45; filter:grayscale(1) }
   </style>
 </head>
 <body>
@@ -47,5 +49,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="app.js"></script>
   <script src="materi.js"></script>
+  <script src="kuis.js"></script>
+  <script src="beranda.js"></script>
 </body>
 </html>
