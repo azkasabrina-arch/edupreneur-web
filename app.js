@@ -47,9 +47,20 @@ function tampilAuth() {
     const email = $('email').value.trim(), pw = $('pw').value
     if (daftar) {
       if (pw !== $('pw2').value) return pesan('Password dan ulangi password harus sama.')
-      const { data, error } = await db.auth.signUp({ email, password: pw, options: { data: { username: $('username').value.trim() } } })
-      if (error) return pesan(error.message)
-      if (!data.session) pesan('Akun dibuat. Cek email untuk konfirmasi, lalu masuk.', 'ok')
+     if (daftar) {
+  if (pw !== $('pw2').value) return pesan('Password dan ulangi password harus sama.')
+  const { data, error } = await db.auth.signUp({
+    email,
+    password: pw,
+    options: { data: { username: $('username').value.trim() } }
+  })
+  if (error) return pesan(error.message)
+  if (!data.session) {
+    // Jaga-jaga kalau sesi belum terbentuk: langsung coba masuk
+    const { error: e2 } = await db.auth.signInWithPassword({ email, password: pw })
+    if (e2) return pesan('Akun dibuat. Silakan masuk dengan email dan password tadi.', 'ok')
+  }
+}
     } else {
       const { error } = await db.auth.signInWithPassword({ email, password: pw })
       if (error) pesan('Email atau password salah.')
