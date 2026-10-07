@@ -39,8 +39,19 @@ function tampilAuth() {
       <label for="pw">Password</label><input id="pw" type="password" required minlength="6" autocomplete="${daftar ? 'new-password' : 'current-password'}">
       ${daftar ? '<label for="pw2">Ulangi password</label><input id="pw2" type="password" required>' : ''}
       <p><button class="btn" type="submit">${daftar ? 'Buat akun' : 'Masuk'}</button></p>
+${!daftar ? '<p><a href="#" id="lupa">Lupa password?</a></p>' : ''}
     </form><div id="pesan"></div></div>`
   $('tMasuk').onclick = () => { mode = 'masuk'; tampilAuth() }
+  if ($('lupa')) $('lupa').onclick = async ev => {
+  ev.preventDefault()
+  const email = $('email').value.trim()
+  if (!email) return pesan('Isi email dulu, lalu klik Lupa password.')
+  const { error } = await db.auth.resetPasswordForEmail(email, {
+    redirectTo: window.location.origin
+  })
+  if (error) return pesan(error.message)
+  pesan('Link reset password sudah dikirim. Cek inbox atau folder spam.', 'ok')
+}
   $('tDaftar').onclick = () => { mode = 'daftar'; tampilAuth() }
   $('formAuth').onsubmit = async ev => {
     ev.preventDefault()
