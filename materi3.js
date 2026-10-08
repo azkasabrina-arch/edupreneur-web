@@ -10,7 +10,7 @@ const pec3 = (n, d) => { [n, d] = red3(n, d); return d === 1 ? ang3(n) : `${ang3
 const bagi3 = (n, d) => { [n, d] = red3(n, d); return d === 1 ? ang3(n) : (n < 0 ? '−' : '') + pc3(Math.abs(n), d) }
 const koef3 = a => a === 1 ? '' : a === -1 ? '−' : ang3(a)
 const suku3 = (a, b) => `${koef3(a)}x${b === 0 ? '' : b < 0 ? ' − ' + (-b) : ' + ' + b}`
-const PL = 'ax + b = c'
+const PL3 = 'ax + b = c'
 
 document.head.insertAdjacentHTML('beforeend', `<style>
   .svg3 { width:100%; max-width:400px; display:block; margin:8px auto; color:var(--ink) }
