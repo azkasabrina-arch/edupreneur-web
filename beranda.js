@@ -1,4 +1,4 @@
-/* Beranda: kartu Kode Kuis (kode kelas sudah dihapus), 6 materi tampil sebagai kotak berwarna.
+/* Beranda baru: kode kelas jadi opsional, 6 materi tampil sebagai kotak berwarna.
    File ini menggantikan fungsi render() dan beranda() milik app.js, jadi app.js tidak perlu diubah. */
 
 const DAFTAR_MATERI = [
@@ -33,16 +33,19 @@ async function render() {
 async function beranda(namaKelas) {
   $('isi').innerHTML = `
     <h2>Halo! Ayo belajar 👋</h2>
-    <div class="card kode-card" style="margin-top:12px"><div class="ik">📝</div>
-      <div style="flex:1;min-width:200px"><b>Kode Kuis</b><br><span class="kecil">Masukkan kode sandi yang sesuai</span></div>
-      <form id="fKuis"><input id="kodeKuis" placeholder="Contoh: A1B2C3" maxlength="10" autocomplete="off" aria-label="Kode kuis" style="text-transform:uppercase"><button class="btn" type="submit">Mulai</button></form>
+    <div class="card kode-card" style="margin-top:12px"><div class="ik">🔑</div>
+      ${namaKelas
+        ? `<div><b>Kelas kamu: ${aman(namaKelas)}</b><br><span class="kecil">Kode kelas sudah terverifikasi.</span></div>`
+        : `<div style="flex:1;min-width:200px"><b>Kode kelas</b><br><span class="kecil">Masukkan kode dari gurumu (boleh nanti saja).</span></div>
+           <form id="fKode"><input id="kodeKelas" placeholder="Contoh: MATH8" autocomplete="off" aria-label="Kode kelas"><button class="btn" type="submit">Gabung</button></form>`}
     </div><div id="pesan"></div>
     <h2 style="margin-top:24px">Pilih materi</h2><div class="tiles" id="tiles"></div>`
 
-  $('fKuis').onsubmit = ev => {
+  if (!namaKelas) $('fKode').onsubmit = async ev => {
     ev.preventDefault()
-    if (!$('kodeKuis').value.trim()) return pesan('Kode kuis belum diisi.')
-    mulaiDenganKode($('kodeKuis').value, t => pesan(t))
+    const { error } = await db.rpc('gabung_kelas', { kode_input: $('kodeKelas').value })
+    if (error) return pesan('Kode tidak ditemukan. Periksa lagi kodenya.')
+    render()
   }
 
   const { data: pr } = await db.from('progres').select('materi_urutan,skor,total').eq('user_id', user.id)
