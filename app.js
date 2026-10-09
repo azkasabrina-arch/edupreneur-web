@@ -1,4 +1,4 @@
-const SUPABASE_URL = 'zzujbnwfwnrcdoibatij'
+const SUPABASE_URL = 'qoeflqydmemenxwjulaw'
 const SUPABASE_ANON_KEY = 'sb_publishable_zZom9gkYPDfJFYMcosOXmg_KvBfwFE4'
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 const app = document.getElementById('app')
